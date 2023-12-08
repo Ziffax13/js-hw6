@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Car {
+            manufacturer;
+            model;
+            year;
+            averageSpeed;
+
+            displayCarInfo(car) {
+                console.log(`Manufacturer: ${car.manufacturer}`);
+                console.log(`Model: ${car.model}`);
+                console.log(`Year: ${car.year}`);
+                console.log(`Average Speed: ${car.averageSpeed} km/h`);
+            }
+
+            calculateTime(distance) {
+                const time = distance / this.averageSpeed; 
+                const breaks = Math.floor(time / 4); 
+                const totalTime = time + breaks; 
+                return totalTime;
+            }
+
+            constructor(manufacturer, model, year, averageSpeed) {
+                this.manufacturer = manufacturer;
+                this.model = model;
+                this.year = year;
+                this.averageSpeed = averageSpeed;
+            }
+        };
+        let car1 = new Car("Toyota", "Camry", 2020, 60)
+        const distance = 300; 
+        const timeTaken = car1.calculateTime(distance);
+        console.log(`Для преодоления ${distance} км потребуется ${timeTaken} часов`);
+
+    </script>
+</body>
+</html>

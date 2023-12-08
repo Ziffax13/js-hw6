@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Operations</title>
+</head>
+<body>
+    <script>
+        class Time {
+            constructor(hours, minutes, seconds) {
+                this.hours = hours;
+                this.minutes = minutes;
+                this.seconds = seconds;
+            }
+
+            displayTime() {
+                const formattedHours = String(this.hours).padStart(2, '0');
+                const formattedMinutes = String(this.minutes).padStart(2, '0');
+                const formattedSeconds = String(this.seconds).padStart(2, '0');
+                console.log(`Current Time: ${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
+            }
+
+            changeSeconds(seconds) {
+                this.seconds += seconds;
+                if (this.seconds >= 60) {
+                    const extraMinutes = Math.floor(this.seconds / 60);
+                    this.seconds %= 60;
+                    this.minutes += extraMinutes;
+                }
+                if (this.minutes >= 60) {
+                    const extraHours = Math.floor(this.minutes / 60);
+                    this.minutes %= 60;
+                    this.hours += extraHours;
+                }
+                this.hours %= 24;
+            }
+
+            changeMinutes(minutes) {
+                this.changeSeconds(minutes * 60);
+            }
+
+            changeHours(hours) {
+                this.changeSeconds(hours * 3600);
+            }
+        }
+
+        const time = new Time(20, 30, 45);
+
+        time.displayTime();
+        time.changeSeconds(30);
+        time.displayTime();
+        time.changeMinutes(5);
+        time.displayTime();
+        time.changeHours(2);
+        time.displayTime();
+        
+    </script>
+</body>
+</html>
